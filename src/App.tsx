@@ -39,15 +39,7 @@ function App() {
         ]
 
     })
-    // const title: string = "What to learn"
-    /*
-        const [tasks, setTasks] = useState<Array<TaskType>>([ //[newState, setter(fn)]
-            {id: v1(), title: "HTML", isDone: true},
-            {id: v1(), title: "CSS", isDone: true},
-            {id: v1(), title: "JS/ES6", isDone: false},
-        ])
-    */
-    //  const [filter, setFilter] = useState<FilterValuesType>("all")
+
     //functions
     const removeTask = (taskID: string, todolistId: string): void => {
         /*        const todolistTasks = tasks[todolistId]
