@@ -13,10 +13,11 @@ type TodoListPropsType = {
     title: string
     tasks: TaskType[]
     filter: FilterValuesType
-    addTask: (title: string) => void
-    removeTask: (taskID: string) => void
-    changeFilter: (filter: FilterValuesType)=> void
-    changeTaskStatus: (taskID: string, isDone: boolean) => void
+    addTask: (title: string, id: string) => void
+    removeTask: (taskID: string, id: string) => void
+    removeTodolist: (id: string) => void
+    changeFilter: (filter: FilterValuesType, id: string)=> void
+    changeTaskStatus: (taskID: string, isDone: boolean, id: string) => void
 }
 
 
@@ -30,17 +31,14 @@ const TodoList = (props: TodoListPropsType) => {
             const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) =>
                 props.changeTaskStatus(task.id, e.currentTarget.checked)
             return (
-                <Task {...task}>
-                    <Author/>
-                </Task>
-                // <li>
-                //     <input
-                //         onChange={changeTaskStatus}
-                //         type="checkbox" checked={task.isDone}
-                //     />
-                //     <span className={task.isDone ? "isDone" : ""}>{task.title}</span>
-                //     <button onClick={removeTask}>x</button>
-                // </li>
+                 <li>
+                     <input
+                         onChange={changeTaskStatus}
+                         type="checkbox" checked={task.isDone}
+                     />
+                     <span className={task.isDone ? "isDone" : ""}>{task.title}</span>
+                     <button onClick={removeTask}>x</button>
+                 </li>
             )
         })
         : <span>Your taskList is empty</span>
