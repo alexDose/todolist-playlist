@@ -10,6 +10,7 @@ export type TaskType = {
 }
 
 type TodoListPropsType = {
+    todolistID: string
     title: string
     tasks: TaskType[]
     filter: FilterValuesType
@@ -27,9 +28,9 @@ const TodoList = (props: TodoListPropsType) => {
     const errorMessageStyles = {color: "hotpink"}
     const tasksListItems = props.tasks.length
         ? props.tasks.map(task => {
-            const removeTask = () => props.removeTask(task.id)
+            const removeTask = () => props.removeTask(task.id, props.todolistID)
             const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) =>
-                props.changeTaskStatus(task.id, e.currentTarget.checked)
+                props.changeTaskStatus(task.id, e.currentTarget.checked, props.todolistID)
             return (
                  <li>
                      <input
@@ -46,7 +47,7 @@ const TodoList = (props: TodoListPropsType) => {
     const onClickAddTask = () => {
         const trimmedTitle = title.trim()
         if(trimmedTitle){
-            props.addTask(trimmedTitle)
+            props.addTask(trimmedTitle, props.todolistID)
         } else {
             setError(true)
         }
@@ -62,9 +63,8 @@ const TodoList = (props: TodoListPropsType) => {
         setTitle(e.currentTarget.value)
     }
     const getChangeFilterHandler = (filter: FilterValuesType) => {
-        return () => props.changeFilter(filter)
+        return () => props.changeFilter(filter, props.todolistID)
     }
-
 
     return (
         <div>

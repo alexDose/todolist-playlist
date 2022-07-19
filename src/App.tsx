@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import TodoList, {TaskType} from "./TodoList";
 import {v1} from "uuid";
+
 // CRUD => СRUD
 // GUI & CLI
 export type FilterValuesType = "all" | "active" | "completed"
@@ -87,20 +88,21 @@ function App() {
         let tasksForRender;
         switch (tl.filter) {
             case "completed":
-                tasksForRender = tasks[tl.id].filter(t => t.isDone === true)
+                tasksForRender = tasks[tl.id].filter(t => t.isDone)
                 break
             case "active":
-                tasksForRender = tasks[tl.id].filter(t => t.isDone === false)
+                tasksForRender = tasks[tl.id].filter(t => !t.isDone)
                 break
             default:
                 tasksForRender = tasks[tl.id]
         }
+
         return  <TodoList
-            id={tl.id}
+            key={tl.id}
+            todolistID={tl.id}
             title={tl.title}
             filter={tl.filter}
             tasks={tasksForRender}
-
             addTask={addTask}
             removeTask={removeTask}
             removeTodolist={removeTodolist}
@@ -108,22 +110,6 @@ function App() {
             changeTaskStatus={changeTaskStatus}
         />
     })
-
-
-   /* return (
-        <div className="App">
-            <TodoList
-                title={title}
-                filter={filter}
-                tasks={tasksForRender}
-
-                addTask={addTask}
-                removeTask={removeTask}
-                changeFilter={changeFilter}
-                changeTaskStatus={changeTaskStatus}
-            />
-        </div>
-    );*/
 }
 
 export default App;
