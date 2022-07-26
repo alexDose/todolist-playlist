@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import TodoList, {TaskType} from "./TodoList";
 import {v1} from "uuid";
+import {AddItemForm} from "./AddItemForm";
 
 // CRUD => СRUD
 // GUI & CLI
@@ -74,9 +75,23 @@ function App() {
         delete tasks[todolistId]
     }
 
+    const addTodolist = (title: string) => {
+        const newTodolistId = v1()
+        const newTodolist: TodolistType = {
+            id: newTodolistId,
+            title: title,
+            filter: "all"
+        }
+        setTodolists([...todolists, newTodolist])
+        setTasks({...tasks, [newTodolistId]: []})
+    }
+
     // UI:
     return (
         <div className="App">
+
+            <AddItemForm addItem={addTodolist}/>
+
             {todolists.map(tl => {
 
                 let tasksForRender;
