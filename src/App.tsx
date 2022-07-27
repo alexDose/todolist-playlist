@@ -43,21 +43,11 @@ function App() {
 
     //functions
     const removeTask = (taskID: string, todolistId: string): void => {
-        /*        const todolistTasks = tasks[todolistId]
-                const updatedTasks = todolistTasks.filter((task: TaskType) => task.id !== taskID)
-                const copyTasks = {...tasks}
-                copyTasks[todolistId] = updatedTasks
-                setTasks(copyTasks)*/
 
         setTasks({...tasks, [todolistId]: tasks[todolistId].filter(t => t.id !== taskID)})
     }
 
     const addTask = (title: string, todolistId: string) => {
-        /*        const todolistTasks = tasks[todolistId]
-                const updatedTasks = [{id: v1(), title, isDone: false}, ...tasks[todolistId]]
-                const copyTasks = {...tasks}
-                copyTasks[todolistId] = updatedTasks
-                setTasks(copyTasks)*/
 
         setTasks({...tasks, [todolistId]: [{id: v1(), title, isDone: false}, ...tasks[todolistId]]})
     }
@@ -65,10 +55,18 @@ function App() {
     const changeFilter = (filter: FilterValuesType, todolistId: string) => {
         setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, filter} : tl))
     }
+    const changeTodolistTitle = (title: string, todolistId: string) => {
+        setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, title} : tl))
+    }
 
     const changeTaskStatus = (taskID: string, isDone: boolean, todolistId: string) => {  // 3, false
         setTasks({...tasks, [todolistId]: tasks[todolistId].map(t => t.id === taskID ? {...t, isDone: isDone} : t)})
     }
+
+    const changeTaskTitle = (taskID: string, title: string, todolistId: string) => {  // 3, false
+        setTasks({...tasks, [todolistId]: tasks[todolistId].map(t => t.id === taskID ? {...t, title} : t)})
+    }
+
 
     const removeTodolist = (todolistId: string) => {
         setTodolists(todolists.filter(tl => tl.id !== todolistId))
@@ -117,6 +115,8 @@ function App() {
                     removeTodolist={removeTodolist}
                     changeFilter={changeFilter}
                     changeTaskStatus={changeTaskStatus}
+                    changeTaskTitle={changeTaskTitle}
+                    changeTodolistTitle={changeTodolistTitle}
                 />
             })}
         </div>

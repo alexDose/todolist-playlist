@@ -25,6 +25,7 @@
   outline: none;
 }
 input {
+  font-weight: bold;
   background: hotpink;
   color: white;
 }
