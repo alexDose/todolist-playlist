@@ -16,7 +16,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
     }
 
     const onKeyDownAddItem = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter" && e.ctrlKey) {
+        if (e.key === "Enter"/* && e.ctrlKey*/) {
             onClickAddItem()
         }
     }
