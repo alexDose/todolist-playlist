@@ -1,3 +1,4 @@
+/*
 .App {
   padding: 30px;
   display: flex;
@@ -6,12 +7,14 @@
 .App > div {
   margin-right: 50px;
 }
+*/
 
 .isDone {
   text-decoration: line-through;
   color: hotpink;
   font-weight: bold;
 }
+/*
 
 .active {
   background-color: hotpink;
@@ -28,4 +31,4 @@ input {
   font-weight: bold;
   background: hotpink;
   color: white;
-}
+}*/
