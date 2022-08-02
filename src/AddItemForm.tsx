@@ -1,4 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import {IconButton, TextField} from "@material-ui/core";
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 type AddItemFormPropsType = {
     addItem: (title:string) => void
@@ -34,14 +36,22 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
     return (
 
         <div>
-            <input
+            <TextField
+                size={"small"}
+                variant={"outlined"}
                 value={title}
                 onChange={onChangeSetTitle}
                 onKeyDown={onKeyDownAddItem}
-                className={error ? "error" : ""}
+                label={"Title"}
+                error={error}
+                helperText={error && "Title is required!"}
             />
-            <button onClick={onClickAddItem}>+</button>
+            <IconButton
+                aria-label={"arrowForwardIcon"} onClick={onClickAddItem}>
+                <ArrowForwardIcon/></IconButton>
+{/*
             {error && <div style={errorMessageStyles}>Title is required!</div>}
+*/}
         </div>
     )
 }

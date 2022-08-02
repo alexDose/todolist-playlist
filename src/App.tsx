@@ -3,6 +3,7 @@ import './App.css';
 import TodoList, {TaskType} from "./TodoList";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
+import {Paper} from "@material-ui/core";
 
 // CRUD => СRUD
 // GUI & CLI
@@ -104,7 +105,9 @@ function App() {
                         tasksForRender = tasks[tl.id]
                 }
 
-                return <TodoList
+                return <Paper elevation={8}
+                    style={{padding: "20px"}}>
+                <TodoList
                     key={tl.id}
                     todolistID={tl.id}
                     title={tl.title}
@@ -117,7 +120,7 @@ function App() {
                     changeTaskStatus={changeTaskStatus}
                     changeTaskTitle={changeTaskTitle}
                     changeTodolistTitle={changeTodolistTitle}
-                />
+                /></Paper>
             })}
         </div>
     )
