@@ -10,7 +10,7 @@ import {Menu} from "@material-ui/icons";
 // GUI & CLI
 export type FilterValuesType = "all" | "active" | "completed"
 
-type TodolistType = {
+export type TodolistType = {
     id: string
     title: string
     filter: FilterValuesType
@@ -120,22 +120,24 @@ function App() {
                         }
 
                         return <Grid item key={tl.id}>
-                        <Paper elevation={8}
-                                      style={{padding: "20px"}}>
-                            <TodoList
-                                key={tl.id}
-                                todolistID={tl.id}
-                                title={tl.title}
-                                filter={tl.filter}
-                                tasks={tasksForRender}
-                                addTask={addTask}
-                                removeTask={removeTask}
-                                removeTodolist={removeTodolist}
-                                changeFilter={changeFilter}
-                                changeTaskStatus={changeTaskStatus}
-                                changeTaskTitle={changeTaskTitle}
-                                changeTodolistTitle={changeTodolistTitle}
-                            /></Paper></Grid>
+                            <Paper elevation={8}
+                                   style={{padding: "20px"}}>
+                                <TodoList
+                                    key={tl.id}
+                                    todolistID={tl.id}
+                                    title={tl.title}
+                                    filter={tl.filter}
+                                    tasks={tasksForRender}
+                                    addTask={addTask}
+                                    removeTask={removeTask}
+                                    removeTodolist={removeTodolist}
+                                    changeFilter={changeFilter}
+                                    changeTaskStatus={changeTaskStatus}
+                                    changeTaskTitle={changeTaskTitle}
+                                    changeTodolistTitle={changeTodolistTitle}
+                                />
+                            </Paper>
+                        </Grid>
                     })}</Grid>
             </Container>
         </div>
