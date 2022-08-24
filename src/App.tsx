@@ -40,7 +40,6 @@ function App() {
             {id: v1(), title: "Milk", isDone: true},
             {id: v1(), title: "Meat", isDone: false},
         ]
-
     })
 
     //functions
@@ -68,7 +67,6 @@ function App() {
     const changeTaskTitle = (taskID: string, title: string, todolistId: string) => {  // 3, false
         setTasks({...tasks, [todolistId]: tasks[todolistId].map(t => t.id === taskID ? {...t, title} : t)})
     }
-
 
     const removeTodolist = (todolistId: string) => {
         setTodolists(todolists.filter(tl => tl.id !== todolistId))

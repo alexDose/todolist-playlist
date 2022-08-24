@@ -8,14 +8,22 @@ import {
     todolistsReducer
 } from "./todolists-reducer";
 
-test("correct todolist should be removed", () => {
-    const todolistId1 = v1()
-    const todolistId2 = v1()
+let todolistId1: string
+let todolistId2: string
+let startState: Array<TodolistType>
 
-    const startState: Array<TodolistType> = [
+beforeEach(() => {
+    todolistId1 = v1()
+    todolistId2 = v1()
+
+    startState = [
         {id: todolistId1, title: "What to learn", filter: "all"},
         {id: todolistId2, title: "What to buy", filter: "all"}
     ]
+})
+
+test("correct todolist should be removed", () => {
+
     const endState = todolistsReducer(startState, RemoveTodolistAC(todolistId1))
 
     expect(endState.length).toBe(1)
@@ -23,15 +31,9 @@ test("correct todolist should be removed", () => {
 })
 
 test("correct todolist should be added", () => {
-    const todolistId1 = v1()
-    const todolistId2 = v1()
 
     const newTodolistTitle = "New Todolist"
 
-    const startState: Array<TodolistType> = [
-        {id: todolistId1, title: "What to learn", filter: "all"},
-        {id: todolistId2, title: "What to buy", filter: "all"}
-    ]
     const endState = todolistsReducer(startState, AddTodolistAC(newTodolistTitle))
 
     expect(endState.length).toBe(3)
@@ -40,15 +42,8 @@ test("correct todolist should be added", () => {
 })
 
 test("correct todolist should change its name", () => {
-    const todolistId1 = v1()
-    const todolistId2 = v1()
 
     const newTodolistTitle = "New Todolist"
-
-    const startState: Array<TodolistType> = [
-        {id: todolistId1, title: "What to learn", filter: "all"},
-        {id: todolistId2, title: "What to buy", filter: "all"}
-    ]
 
     const action = ChangeTodolistTitleAC(todolistId2, newTodolistTitle)
 
@@ -59,15 +54,8 @@ test("correct todolist should change its name", () => {
 })
 
 test("correct filter of todolist should be changed", () => {
-    const todolistId1 = v1()
-    const todolistId2 = v1()
 
     const newFilter: FilterValuesType = "completed"
-
-    const startState: Array<TodolistType> = [
-        {id: todolistId1, title: "What to learn", filter: "all"},
-        {id: todolistId2, title: "What to buy", filter: "all"}
-    ]
 
     const action = ChangeTodolistFilterAC(todolistId2, newFilter)
 
