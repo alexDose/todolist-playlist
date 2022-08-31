@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, memo, useCallback} from 'react';
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
@@ -24,9 +24,8 @@ type TodoListPropsType = {
     changeTodolistTitle: (title: string, todolistId: string) => void
 }
 
-
-const TodoList = (props: TodoListPropsType) => {
-
+const TodoList = memo((props: TodoListPropsType) => {
+    console.log('a')
     let tasks = useSelector<AppRootStateType, Array<TaskType>>(state => state.tasks[props.todolistID])
 
     let dispatch = useDispatch()
@@ -79,13 +78,13 @@ const TodoList = (props: TodoListPropsType) => {
         return () => dispatch(changeTodolistFilterAC(filter, props.todolistID))
     }
 
-    const removeTodolist = () => {
+    const removeTodolist = useCallback(() => {
         props.removeTodolist(props.todolistID)
-    }
+    }, [props.removeTodolist, props.todolistID])
 
-    const addTask = (title: string) => {
+    const addTask = useCallback((title: string) => {
         dispatch(addTaskAC(title, props.todolistID))
-    }
+    }, [dispatch])
 
     const changeTodolistTitle =(title: string) => {
         props.changeTodolistTitle(title, props.todolistID)
@@ -134,6 +133,6 @@ const TodoList = (props: TodoListPropsType) => {
             </div>
         </div>
     );
-};
+});
 
 export default TodoList;

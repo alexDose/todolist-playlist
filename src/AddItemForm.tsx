@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import React, {ChangeEvent, KeyboardEvent, memo, useState} from "react";
 import {IconButton, TextField} from "@material-ui/core";
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
@@ -6,8 +6,7 @@ type AddItemFormPropsType = {
     addItem: (title:string) => void
 }
 
-export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
-
+export const AddItemForm = memo( (props: AddItemFormPropsType) => {
     const [title, setTitle] = useState("")
     const [error, setError] = useState<boolean>(false)
     const errorMessageStyles = {color: "hotpink"}
@@ -54,4 +53,4 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
 */}
         </div>
     )
-}
+})

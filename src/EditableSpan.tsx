@@ -28,6 +28,6 @@ export const EditableSpan: React.FC<EditableSpanType> = (props) => {
                 autoFocus
                 onBlur={offEditMode}/>
             : <span onDoubleClick={onEditMode}>
-                {props.title}</span>
+                {title}</span>
     )
 }
