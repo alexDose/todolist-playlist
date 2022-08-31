@@ -1,9 +1,18 @@
-import {ChangeEvent} from "react";
-import {EditableSpan} from "./EditableSpan";
+import React, {ChangeEvent, memo} from "react";
 import {Checkbox, IconButton} from "@material-ui/core";
+import {EditableSpan} from "./EditableSpan";
 import {Delete} from "@material-ui/icons";
+import {TaskType} from "./TodoList";
 
-export const Task = ({
+
+type TaskPropsType = {
+    task: TaskType
+    removeTask: (taskId: string) => void
+    changeTaskStatus: (id: string, isDone: boolean) => void
+    changeTaskTitle: (taskId: string, newTitle: string) => void
+}
+
+export const Task = memo(({
                          task,
                          removeTask,
                          changeTaskTitle,
@@ -31,4 +40,4 @@ export const Task = ({
             <Delete/>
         </IconButton>
     </div>
-}
+})
