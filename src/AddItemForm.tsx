@@ -7,6 +7,7 @@ type AddItemFormPropsType = {
 }
 
 export const AddItemForm = memo( (props: AddItemFormPropsType) => {
+    console.log('form')
     const [title, setTitle] = useState("")
     const [error, setError] = useState<boolean>(false)
     const errorMessageStyles = {color: "hotpink"}

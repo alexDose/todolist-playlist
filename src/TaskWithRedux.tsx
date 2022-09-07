@@ -1,4 +1,4 @@
-import React, {ChangeEvent, memo} from "react";
+import React, {ChangeEvent, memo, useCallback} from "react";
 import {Checkbox, IconButton} from "@material-ui/core";
 import {EditableSpan} from "./EditableSpan";
 import {Delete} from "@material-ui/icons";
@@ -26,9 +26,9 @@ export const TaskWithRedux = memo(({
         let newIsDoneValue = e.currentTarget.checked;
         dispatch(changeTaskStatusAC(id, newIsDoneValue, todolistId))
     }
-    const onTitleChangeHandler = (newValue: string) => {
+    const onTitleChangeHandler = useCallback((newValue: string) => {
         dispatch(changeTaskTitleAC(id, newValue, todolistId))
-    }
+    }, [dispatch, id, todolistId])
 
     return <div key={id} className={isDone ? "is-done" : ""}>
         <Checkbox
@@ -37,7 +37,7 @@ export const TaskWithRedux = memo(({
             onChange={onChangeHandler}
         />
 
-        <EditableSpan value={title} onChange={onTitleChangeHandler}/>
+        <EditableSpan title={title}  onChange={onTitleChangeHandler}/>
         <IconButton onClick={onClickHandler}>
             <Delete/>
         </IconButton>

@@ -8,21 +8,22 @@ import {TaskType} from "./TodoList";
 type TaskPropsType = {
     task: TaskType
     removeTask: (taskId: string) => void
-    changeTaskStatus: (id: string, isDone: boolean) => void
+    changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void
     changeTaskTitle: (taskId: string, newTitle: string) => void
+    todolistID: string
 }
 
 export const Task = memo(({
-                         task,
-                         removeTask,
-                         changeTaskTitle,
-                         changeTaskStatus
-                     }: TaskPropsType) => {
-
+                              task,
+                              removeTask,
+                              changeTaskTitle,
+                              changeTaskStatus,
+                              todolistID
+                          }: TaskPropsType) => {
+    console.log('task')
     const onClickHandler = () => removeTask(task.id)
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        let newIsDoneValue = e.currentTarget.checked;
-        changeTaskStatus(task.id, newIsDoneValue);
+        changeTaskStatus(task.id, e.currentTarget.checked, todolistID);
     }
     const onTitleChangeHandler = (newValue: string) => {
         changeTaskTitle(task.id, newValue);
@@ -35,7 +36,7 @@ export const Task = memo(({
             onChange={onChangeHandler}
         />
 
-        <EditableSpan value={task.title} onChange={onTitleChangeHandler}/>
+        <EditableSpan title={task.title} onChange={onTitleChangeHandler}/>
         <IconButton onClick={onClickHandler}>
             <Delete/>
         </IconButton>
