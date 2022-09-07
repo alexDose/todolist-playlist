@@ -1,14 +1,14 @@
-import React, {ChangeEvent, memo, useCallback} from 'react';
+import React, {memo, useCallback} from 'react';
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
-import {Button, Checkbox, IconButton, List} from "@material-ui/core";
+import {Button, IconButton, List} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
+import {addTaskAC} from "./state/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
 import {changeTodolistFilterAC} from "./state/todolists-reducer";
-import {Task} from "./Task";
+import {TaskWithRedux} from "./TaskWithRedux";
 
 
 export type TaskType = {
@@ -45,21 +45,20 @@ const TodoList = memo((props: TodoListPropsType) => {
 
     const tasksListItems = tasksForRender.length
         ? tasksForRender.map(task => {
-            const removeTask = () => dispatch(removeTaskAC(task.id, props.todolistID))
+            /*
+                        const removeTask = () => dispatch(removeTaskAC(task.id, props.todolistID))
 
-            const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) =>
-                dispatch(changeTaskStatusAC(task.id, e.currentTarget.checked, props.todolistID))
+                        const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) =>
+                            dispatch(changeTaskStatusAC(task.id, e.currentTarget.checked, props.todolistID))
 
-            const changeTaskTitle = (title: string) => {
-                dispatch(changeTaskTitleAC(task.id, title, props.todolistID))
-            }
+                        const changeTaskTitle = (title: string) => {
+                            dispatch(changeTaskTitleAC(task.id, title, props.todolistID))
+                        }
+            */
 
             return (
-//@ts-ignore
                 <>
-
-                    <Task key={task.id} task={task} removeTask={removeTask} changeTaskStatus={changeTaskStatus}
-                          changeTaskTitle={changeTaskTitle}/>
+                    <TaskWithRedux task={task} todolistId={props.todolistID} key={task.id}/>
                 </>
 
 
@@ -94,9 +93,9 @@ const TodoList = memo((props: TodoListPropsType) => {
         dispatch(addTaskAC(title, props.todolistID))
     }, [dispatch, props.todolistID])
 
-    const changeTodolistTitle = (title: string) => {
+    const changeTodolistTitle = useCallback((title: string) => {
         props.changeTodolistTitle(title, props.todolistID)
-    }
+    }, [props.changeTodolistTitle, props.todolistID])
 
     return (
 
