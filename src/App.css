@@ -7,20 +7,28 @@
 .App > div {
   margin-right: 50px;
 }
-
-.error {
-  border: red 1px solid;
-}
-
-.error-message {
-  color: red;
-}
-
-.active-filter {
-  background-color: aquamarine;
-}
-
-.is-done {
-  opacity: 0.5;
-}
 */
+
+.isDone {
+  text-decoration: line-through;
+  color: hotpink;
+  font-weight: bold;
+}
+/*
+
+.active {
+  background-color: hotpink;
+  color: white;
+  font-weight: bold;
+  border: 3px solid hotpink;
+  border-radius: 2px;
+}
+.error {
+  border: 3px solid hotpink;
+  outline: none;
+}
+input {
+  font-weight: bold;
+  background: hotpink;
+  color: white;
+}*/
