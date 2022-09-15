@@ -6,17 +6,13 @@ import {action} from "@storybook/addon-actions";
 
 export default {
   title: 'AddItemForm',
-  component: AddItemForm,
-  argTypes: {
-    onClick: {
-      description: 'Button inside form clicked'
-    }
-  },
-} as ComponentMeta<typeof AddItemForm>;
+  component: AddItemForm
+}
 
-const Template: ComponentStory<typeof AddItemForm> = (args) => <AddItemForm {...args} />;
+const addItem = action('Button inside form clicked')
 
-export const AddItemFormExample = Template.bind({});
-AddItemFormExample.args = {
-  addItem: action('Button inside form clicked')
-};
+
+
+export const AddItemFormExample = () => {
+  return <AddItemForm addItem={addItem}/>
+}

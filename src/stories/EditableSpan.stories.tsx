@@ -1,26 +1,16 @@
 import React from 'react';
-import {Meta, Story} from '@storybook/react';
+import {EditableSpan} from "../EditableSpan";
 import {action} from "@storybook/addon-actions";
-import {EditableSpan, EditableSpanType} from "../EditableSpan";
 
 
 export default {
   title: 'EditableSpan',
-  component: EditableSpan,
-  argTypes: {
-    onChange: {
-      description: 'Value EditableSpan changed'
-    },
-    value: {
-      defaultValue: "HTML",
-      description: 'Start value EditableSpan'
-    }
-  },
-} as Meta;
+  component: EditableSpan
+}
 
-const Template: Story<EditableSpanType> = (args) => <EditableSpan {...args} />;
+const changeCallback = action("Value changed")
 
-export const EditableSpanExample = Template.bind({});
-EditableSpanExample.args = {
-  onChange: action('Value EditableSpan changed')
-};
+export const EditableSpanBaseExample = () => {
+  return <EditableSpan title={"Start value"} onChange={changeCallback}/>
+}
+

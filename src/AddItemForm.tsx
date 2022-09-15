@@ -48,7 +48,8 @@ export const AddItemForm = memo( (props: AddItemFormPropsType) => {
             />
             <IconButton
                 aria-label={"arrowForwardIcon"} onClick={onClickAddItem}>
-                <ArrowForwardIcon/></IconButton>
+                <ArrowForwardIcon/>
+            </IconButton>
 {/*
             {error && <div style={errorMessageStyles}>Title is required!</div>}
 */}
