@@ -59,8 +59,6 @@ export const UpdateTodolistTitle = () => {
 export const GetTasks = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        // здесь мы будем делать запрос и ответ закидывать в стейт.
-        // который в виде строки будем отображать в div-ке
         const todolistId = `5b070355-85bd-4d66-9778-0a7819b546a1`
         taskAPI.getTasks(todolistId)
             .then((res) => {
@@ -74,8 +72,6 @@ export const GetTasks = () => {
 export const CreateTask = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        // здесь мы будем делать запрос и ответ закидывать в стейт.
-        // который в виде строки будем отображать в div-ке
         const todolistId = `5b070355-85bd-4d66-9778-0a7819b546a1`
         const title = 'newTask'
         taskAPI.createTask(todolistId, title)
@@ -90,10 +86,8 @@ export const CreateTask = () => {
 export const UpdateTask = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        // здесь мы будем делать запрос и ответ закидывать в стейт.
-        // который в виде строки будем отображать в div-ке
         const todolistId = `5b070355-85bd-4d66-9778-0a7819b546a1`
-        const taskId = '4761467b-cc07-4e1e-a232-d37276ea9ff1'
+        const taskId = 'bb238d1a-88a3-463c-a228-27753e7c0ed6'
         const title = 'POSTMAN'
         taskAPI.updateTask(todolistId, taskId, title)
             .then((res) => {
@@ -107,10 +101,8 @@ export const UpdateTask = () => {
 export const DeleteTask = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        // здесь мы будем делать запрос и ответ закидывать в стейт.
-        // который в виде строки будем отображать в div-ке
         const todolistId = `5b070355-85bd-4d66-9778-0a7819b546a1`
-        const taskId = '520965bd-05ac-4333-8a46-48a24f9bcbf6'
+        const taskId = 'bb238d1a-88a3-463c-a228-27753e7c0ed6'
         taskAPI.deleteTask(todolistId, taskId)
             .then((res) => {
                 setState(res.data)
