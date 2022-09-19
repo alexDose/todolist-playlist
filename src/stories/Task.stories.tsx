@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import {action} from "@storybook/addon-actions";
 import {TaskWithRedux} from "../TaskWithRedux";
 import {ReduxStoreProviderDecorator} from "./decorators/ReduxStoreProviderDecorater";
+import {TaskPriorities, TaskStatuses} from "../api/todolist-api";
 
 
 export default {
@@ -27,13 +28,13 @@ const baseArgs = {
 export const TaskIsDoneExample = Template.bind({});
 TaskIsDoneExample.args = {
   ...baseArgs,
-  task: {id: "1", isDone: true, title: "JS"},
+  task: {id: "1", status: TaskStatuses.Completed, title: "JS", completed: false, addedDate: "", deadline: "", description: "", order: 0, startDate: "", priority: TaskPriorities.Low, todoListId: "todolistId1"},
   todolistId: "todolistId1"
 };
 export const TaskIsNotDoneExample = Template.bind({});
 TaskIsNotDoneExample.args = {
   ...baseArgs,
-  task: {id: "1", isDone: false, title: "JS"},
+  task: {id: "1", status: TaskStatuses.New, title: "JS", completed: false, addedDate: "", deadline: "", description: "", order: 0, startDate: "", priority: TaskPriorities.Low, todoListId: "todolistId1"},
   todolistId: "todolistId1"
 };
 

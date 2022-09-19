@@ -9,7 +9,7 @@ const instance = axios.create({
     }
 })
 
-type TodolistType= {
+export type TodolistType= {
     id: string
     addedDate: string
     order: number
@@ -38,7 +38,7 @@ export const todolistAPI = {
     }
 }
 
-type TaskType = {
+export type TaskType = {
     description: string
     title: string
     completed: boolean

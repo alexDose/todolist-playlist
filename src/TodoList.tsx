@@ -9,12 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
 import {changeTodolistFilterAC} from "./state/todolists-reducer";
 import {TaskWithRedux} from "./TaskWithRedux";
-
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}
+import {TaskStatuses, TaskType} from "./api/todolist-api";
 
 type TodoListPropsType = {
     todolistID: string
@@ -33,10 +28,10 @@ const TodoList = memo((props: TodoListPropsType) => {
     let tasksForRender: Array<TaskType>;
     switch (props.filter) {
         case "completed":
-            tasksForRender = tasks.filter(t => t.isDone)
+            tasksForRender = tasks.filter(t => t.status === TaskStatuses.Completed)
             break
         case "active":
-            tasksForRender = tasks.filter(t => !t.isDone)
+            tasksForRender = tasks.filter(t => t.status === TaskStatuses.New)
             break
         default:
             tasksForRender = tasks
