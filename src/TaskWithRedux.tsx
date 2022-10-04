@@ -3,8 +3,9 @@ import {Checkbox, IconButton} from "@material-ui/core";
 import {EditableSpan} from "./EditableSpan";
 import {Delete} from "@material-ui/icons";
 import {useDispatch} from "react-redux";
-import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
+import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, removeTaskTC} from "./state/tasks-reducer";
 import {TaskStatuses, TaskType} from "./api/todolist-api";
+import {ThunkType} from "./state/store";
 
 type TaskPropsType = {
     task: TaskType
@@ -20,7 +21,9 @@ export const TaskWithRedux = memo(({
 
     const dispatch = useDispatch()
 
-    const onClickHandler = useCallback(() => dispatch(removeTaskAC(id, todolistId)), [dispatch, id, todolistId])
+    const removeTask = useCallback(function(todolistId: string, id: string): ThunkType {
+        dispatch(removeTaskTC(todolistId, id))
+    }, [dispatch, id, todolistId])
 
     const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         let newStatusValue = e.currentTarget.checked;
@@ -39,7 +42,7 @@ export const TaskWithRedux = memo(({
         />
 
         <EditableSpan title={title}  onChange={onTitleChangeHandler}/>
-        <IconButton onClick={onClickHandler}>
+        <IconButton onClick={removeTask}>
             <Delete/>
         </IconButton>
     </div>
